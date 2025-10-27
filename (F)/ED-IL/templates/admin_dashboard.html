@@ -1,0 +1,538 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Smart Internship Portal{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h3 mb-2 fw-bold">Dashboard Overview</h1>
+                    <p class="text-muted mb-0">Welcome back! Here's what's happening with your portal today.</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-download me-2"></i>Export Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KPI Statistics Cards -->
+    <div class="row g-4 mb-4">
+        <!-- Total Students Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card stat-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="stat-label mb-2">Total Students</p>
+                            <h2 class="stat-number">{{ total_students or 1248 }}</h2>
+                            <span class="stat-change positive">
+                                <i class="bi bi-arrow-up"></i> 12% from last month
+                            </span>
+                        </div>
+                        <div class="stat-icon bg-gradient-primary">
+                            <i class="bi bi-people"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Internships Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card stat-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="stat-label mb-2">Active Internships</p>
+                            <h2 class="stat-number">{{ total_internships or 87 }}</h2>
+                            <span class="stat-change positive">
+                                <i class="bi bi-arrow-up"></i> 8% from last month
+                            </span>
+                        </div>
+                        <div class="stat-icon bg-gradient-success">
+                            <i class="bi bi-briefcase"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications Accepted Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card stat-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="stat-label mb-2">Accepted Applications</p>
+                            <h2 class="stat-number">{{ accepted_applications or 342 }}</h2>
+                            <span class="stat-change positive">
+                                <i class="bi bi-arrow-up"></i> 15% from last month
+                            </span>
+                        </div>
+                        <div class="stat-icon bg-gradient-warning">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rejected Applications Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card stat-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="stat-label mb-2">Rejected Applications</p>
+                            <h2 class="stat-number">{{ rejected_applications or 89 }}</h2>
+                            <span class="stat-change negative">
+                                <i class="bi bi-arrow-down"></i> 5% from last month
+                            </span>
+                        </div>
+                        <div class="stat-icon bg-gradient-danger">
+                            <i class="bi bi-x-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts and Tables Row -->
+    <div class="row g-4 mb-4">
+        <!-- Recent Applications -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header bg-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">Recent Applications</h5>
+                        <a href="{{ url_for('admin.applications') }}" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="border-0">Student Name</th>
+                                    <th class="border-0">Company</th>
+                                    <th class="border-0">Position</th>
+                                    <th class="border-0">Date</th>
+                                    <th class="border-0">Status</th>
+                                    <th class="border-0">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if applications %}
+                                    {% for app in applications[:10] %}
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="user-avatar me-2">
+                                                    <i class="bi bi-person-circle fs-5 text-primary"></i>
+                                                </div>
+                                                <span class="fw-medium">{{ app.student_name }}</span>
+                                            </div>
+                                        </td>
+                                        <td>{{ app.company }}</td>
+                                        <td>{{ app.position }}</td>
+                                        <td>{{ app.date }}</td>
+                                        <td>
+                                            {% if app.status == 'Accepted' %}
+                                                <span class="badge bg-success">Accepted</span>
+                                            {% elif app.status == 'Rejected' %}
+                                                <span class="badge bg-danger">Rejected</span>
+                                            {% elif app.status == 'Pending' %}
+                                                <span class="badge bg-warning">Pending</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">{{ app.status }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary" title="View Details">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="user-avatar me-2">
+                                                    <i class="bi bi-person-circle fs-5 text-primary"></i>
+                                                </div>
+                                                <span class="fw-medium">Sarah Johnson</span>
+                                            </div>
+                                        </td>
+                                        <td>TechCorp Inc.</td>
+                                        <td>Software Developer</td>
+                                        <td>Oct 20, 2025</td>
+                                        <td><span class="badge bg-warning">Pending</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary" title="View Details">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="user-avatar me-2">
+                                                    <i class="bi bi-person-circle fs-5 text-primary"></i>
+                                                </div>
+                                                <span class="fw-medium">Michael Chen</span>
+                                            </div>
+                                        </td>
+                                        <td>DataSoft Solutions</td>
+                                        <td>Data Analyst</td>
+                                        <td>Oct 19, 2025</td>
+                                        <td><span class="badge bg-success">Accepted</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary" title="View Details">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="user-avatar me-2">
+                                                    <i class="bi bi-person-circle fs-5 text-primary"></i>
+                                                </div>
+                                                <span class="fw-medium">Emily Rodriguez</span>
+                                            </div>
+                                        </td>
+                                        <td>WebDesign Pro</td>
+                                        <td>UI/UX Designer</td>
+                                        <td>Oct 18, 2025</td>
+                                        <td><span class="badge bg-success">Accepted</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary" title="View Details">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="user-avatar me-2">
+                                                    <i class="bi bi-person-circle fs-5 text-primary"></i>
+                                                </div>
+                                                <span class="fw-medium">David Kim</span>
+                                            </div>
+                                        </td>
+                                        <td>CloudTech Systems</td>
+                                        <td>Cloud Engineer</td>
+                                        <td>Oct 17, 2025</td>
+                                        <td><span class="badge bg-danger">Rejected</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary" title="View Details">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="user-avatar me-2">
+                                                    <i class="bi bi-person-circle fs-5 text-primary"></i>
+                                                </div>
+                                                <span class="fw-medium">Jessica Taylor</span>
+                                            </div>
+                                        </td>
+                                        <td>Marketing Maven</td>
+                                        <td>Digital Marketing</td>
+                                        <td>Oct 16, 2025</td>
+                                        <td><span class="badge bg-warning">Pending</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary" title="View Details">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions & Stats -->
+        <div class="col-lg-4">
+            <!-- Quick Actions -->
+            <div class="card mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('admin.students') }}" class="btn btn-outline-primary text-start">
+                            <i class="bi bi-plus-circle me-2"></i>Add New Student
+                        </a>
+                        <a href="{{ url_for('admin.companies') }}" class="btn btn-outline-success text-start">
+                            <i class="bi bi-building me-2"></i>Add New Company
+                        </a>
+                        <button class="btn btn-outline-info text-start">
+                            <i class="bi bi-briefcase me-2"></i>Post Internship
+                        </button>
+                        <button class="btn btn-outline-warning text-start">
+                            <i class="bi bi-file-earmark-text me-2"></i>Generate Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Companies -->
+            <div class="card">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Top Companies</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <div class="d-flex align-items-center">
+                                <div class="company-logo me-3">
+                                    <i class="bi bi-building"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-medium">TechCorp Inc.</div>
+                                    <small class="text-muted">24 Active Positions</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary rounded-pill">158</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <div class="d-flex align-items-center">
+                                <div class="company-logo me-3">
+                                    <i class="bi bi-building"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-medium">DataSoft Solutions</div>
+                                    <small class="text-muted">18 Active Positions</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary rounded-pill">132</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <div class="d-flex align-items-center">
+                                <div class="company-logo me-3">
+                                    <i class="bi bi-building"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-medium">CloudTech Systems</div>
+                                    <small class="text-muted">15 Active Positions</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary rounded-pill">98</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <div class="d-flex align-items-center">
+                                <div class="company-logo me-3">
+                                    <i class="bi bi-building"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-medium">WebDesign Pro</div>
+                                    <small class="text-muted">12 Active Positions</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary rounded-pill">76</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity & Analytics Row -->
+    <div class="row g-4">
+        <!-- Recent Activity -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Recent Activity</h5>
+                </div>
+                <div class="card-body">
+                    <div class="activity-timeline">
+                        <div class="activity-item">
+                            <div class="activity-icon bg-success">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">New Application Approved</div>
+                                <div class="activity-description">Sarah Johnson's application for Software Developer at TechCorp Inc. was approved</div>
+                                <div class="activity-time">2 minutes ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon bg-primary">
+                                <i class="bi bi-person-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">New Student Registered</div>
+                                <div class="activity-description">Alex Martinez joined the portal</div>
+                                <div class="activity-time">1 hour ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon bg-info">
+                                <i class="bi bi-briefcase"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">New Internship Posted</div>
+                                <div class="activity-description">CloudTech Systems posted "Cloud Engineer Intern" position</div>
+                                <div class="activity-time">3 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon bg-warning">
+                                <i class="bi bi-building"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">New Company Registered</div>
+                                <div class="activity-description">InnovateTech Solutions joined the platform</div>
+                                <div class="activity-time">5 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon bg-danger">
+                                <i class="bi bi-x-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Application Rejected</div>
+                                <div class="activity-description">David Kim's application was not selected</div>
+                                <div class="activity-time">6 hours ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Status Chart -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Application Status Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center mb-4">
+                        <div class="col-4">
+                            <div class="status-stat">
+                                <div class="status-number text-success fw-bold fs-4">342</div>
+                                <div class="status-label text-muted">Accepted</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="status-stat">
+                                <div class="status-number text-warning fw-bold fs-4">156</div>
+                                <div class="status-label text-muted">Pending</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="status-stat">
+                                <div class="status-number text-danger fw-bold fs-4">89</div>
+                                <div class="status-label text-muted">Rejected</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Bars -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Accepted</span>
+                            <span class="fw-medium">58%</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-success" style="width: 58%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Pending</span>
+                            <span class="fw-medium">27%</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-warning" style="width: 27%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Rejected</span>
+                            <span class="fw-medium">15%</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-danger" style="width: 15%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .activity-timeline {
+        position: relative;
+    }
+    
+    .activity-item {
+        display: flex;
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+    
+    .activity-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        left: 19px;
+        top: 40px;
+        width: 2px;
+        height: calc(100% + 10px);
+        background-color: #e9ecef;
+    }
+    
+    .activity-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        flex-shrink: 0;
+        margin-right: 1rem;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .activity-content {
+        flex: 1;
+    }
+    
+    .activity-title {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    
+    .activity-description {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .activity-time {
+        color: #adb5bd;
+        font-size: 0.8rem;
+    }
+</style>
+{% endblock %}

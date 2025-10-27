@@ -1,0 +1,337 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard - Smart Internship Portal{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h3 mb-2 fw-bold">Welcome back, {{ student.name }}!</h1>
+                    <p class="text-muted mb-0">Here's your internship journey at a glance</p>
+                </div>
+                <div>
+                    <a href="{{ url_for('user_profile') }}" class="btn btn-outline-primary">
+                        <i class="bi bi-person me-2"></i>Edit Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-4 mb-4">
+        <!-- Applications Submitted -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card stat-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="stat-label mb-2">Applications Submitted</p>
+                            <h2 class="stat-number">{{ applications_count }}</h2>
+                            <span class="stat-change positive">
+                                <i class="bi bi-arrow-up"></i> Active
+                            </span>
+                        </div>
+                        <div class="stat-icon bg-gradient-primary">
+                            <i class="bi bi-send"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accepted -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card stat-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="stat-label mb-2">Accepted</p>
+                            <h2 class="stat-number">{{ accepted_count }}</h2>
+                            <span class="stat-change positive">
+                                <i class="bi bi-check-circle"></i> Success
+                            </span>
+                        </div>
+                        <div class="stat-icon bg-gradient-success">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card stat-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="stat-label mb-2">Pending Review</p>
+                            <h2 class="stat-number">{{ pending_count }}</h2>
+                            <span class="stat-change">
+                                <i class="bi bi-clock"></i> In Progress
+                            </span>
+                        </div>
+                        <div class="stat-icon bg-gradient-warning">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Strength -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card stat-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="stat-label mb-2">Profile Strength</p>
+                            <h2 class="stat-number">{{ profile_completion }}%</h2>
+                            <span class="stat-change {% if profile_completion >= 80 %}positive{% endif %}">
+                                <i class="bi bi-graph-up"></i> {{ 'Excellent' if profile_completion >= 80 else 'Complete it' }}
+                            </span>
+                        </div>
+                        <div class="stat-icon bg-gradient-info">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Row -->
+    <div class="row g-4">
+        <!-- Left Column - Applications -->
+        <div class="col-lg-8">
+            <!-- My Applications -->
+            <div class="card mb-4">
+                <div class="card-header bg-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">My Applications</h5>
+                        <a href="{{ url_for('internship_listings') }}" class="btn btn-sm btn-primary">
+                            <i class="bi bi-plus-circle me-1"></i>Apply More
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    {% if my_applications %}
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="border-0">Company</th>
+                                    <th class="border-0">Position</th>
+                                    <th class="border-0">Applied On</th>
+                                    <th class="border-0">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for app in my_applications %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="company-logo me-2">
+                                                <i class="bi bi-building"></i>
+                                            </div>
+                                            <span class="fw-medium">{{ app.company }}</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ app.position }}</td>
+                                    <td>{{ app.applied_date }}</td>
+                                    <td>
+                                        {% if app.status == 'Accepted' %}
+                                            <span class="badge bg-success">
+                                                <i class="bi bi-check-circle me-1"></i>Accepted
+                                            </span>
+                                        {% elif app.status == 'Rejected' %}
+                                            <span class="badge bg-danger">
+                                                <i class="bi bi-x-circle me-1"></i>Not Selected
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-warning">
+                                                <i class="bi bi-clock me-1"></i>Pending
+                                            </span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <i class="bi bi-inbox fs-1 text-muted mb-3 d-block"></i>
+                        <p class="text-muted mb-3">You haven't applied to any internships yet</p>
+                        <a href="{{ url_for('internship_listings') }}" class="btn btn-primary">
+                            <i class="bi bi-search me-2"></i>Browse Internships
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Recommended Internships -->
+            <div class="card">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Recommended For You</h5>
+                </div>
+                <div class="card-body">
+                    {% if recommended_internships %}
+                    <div class="row">
+                        {% for rec in recommended_internships[:3] %}
+                        <div class="col-md-12 mb-3">
+                            <div class="card internship-card h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div>
+                                            <h6 class="fw-bold mb-1">{{ rec.title }}</h6>
+                                            <p class="text-muted small mb-2">{{ rec.company }}</p>
+                                        </div>
+                                        <span class="badge bg-primary">{{ rec.match_score }}% Match</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        {% for skill in rec.matched_skills %}
+                                            <span class="skill-badge">{{ skill }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <a href="{{ url_for('internship_listings') }}" class="btn btn-sm btn-outline-primary">
+                                        View Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="text-center py-3">
+                        <p class="text-muted mb-0">No recommendations available. Complete your profile to get matched!</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Profile & Quick Actions -->
+        <div class="col-lg-4">
+            <!-- Profile Completion Card -->
+            <div class="card mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Profile Completion</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <div class="position-relative d-inline-block">
+                            <svg width="120" height="120" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#e9ecef" stroke-width="12"/>
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#0d6efd" stroke-width="12" 
+                                        stroke-dasharray="339.292" stroke-dashoffset="{{ 339.292 - (339.292 * profile_completion / 100) }}" 
+                                        transform="rotate(-90 60 60)" stroke-linecap="round"/>
+                            </svg>
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                                <h3 class="mb-0 fw-bold">{{ profile_completion }}%</h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="completion-checklist">
+                        <div class="checklist-item {{ 'completed' if student.name else 'incomplete' }} mb-2">
+                            <i class="bi bi-{{ 'check-circle-fill text-success' if student.name else 'circle text-muted' }} me-2"></i>
+                            <span>Basic Information</span>
+                        </div>
+                        <div class="checklist-item {{ 'completed' if student.get('education') else 'incomplete' }} mb-2">
+                            <i class="bi bi-{{ 'check-circle-fill text-success' if student.get('education') else 'circle text-muted' }} me-2"></i>
+                            <span>Education Details</span>
+                        </div>
+                        <div class="checklist-item {{ 'completed' if student.get('skills') else 'incomplete' }} mb-2">
+                            <i class="bi bi-{{ 'check-circle-fill text-success' if student.get('skills') else 'circle text-muted' }} me-2"></i>
+                            <span>Skills Added</span>
+                        </div>
+                        <div class="checklist-item {{ 'completed' if student.get('resume') else 'incomplete' }} mb-2">
+                            <i class="bi bi-{{ 'check-circle-fill text-success' if student.get('resume') else 'circle text-muted' }} me-2"></i>
+                            <span>Resume Uploaded</span>
+                        </div>
+                    </div>
+                    
+                    {% if profile_completion < 100 %}
+                    <div class="alert alert-info mt-3 mb-0">
+                        <small><i class="bi bi-info-circle me-2"></i>Complete your profile to increase visibility!</small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('internship_listings') }}" class="btn btn-primary text-start">
+                            <i class="bi bi-search me-2"></i>Browse Internships
+                        </a>
+                        <a href="{{ url_for('user_profile') }}" class="btn btn-outline-primary text-start">
+                            <i class="bi bi-person me-2"></i>Update Profile
+                        </a>
+                        <a href="{{ url_for('recommendations') }}" class="btn btn-outline-success text-start">
+                            <i class="bi bi-star me-2"></i>View Recommendations
+                        </a>
+                        <a href="{{ url_for('notifications_page') }}" class="btn btn-outline-info text-start">
+                            <i class="bi bi-bell me-2"></i>Notifications
+                            {% if student.get('notifications_unread', 0) > 0 %}
+                            <span class="badge bg-danger rounded-pill ms-auto">{{ student.get('notifications_unread') }}</span>
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Overview -->
+            <div class="card">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Your Skills</h5>
+                </div>
+                <div class="card-body">
+                    {% if student.get('skills') %}
+                        <div class="skills-container">
+                            {% for skill in student.get('skills', []) %}
+                                <span class="badge bg-primary me-2 mb-2">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                        <hr>
+                        <a href="{{ url_for('user_profile') }}" class="btn btn-sm btn-outline-primary w-100">
+                            <i class="bi bi-plus-circle me-1"></i>Add More Skills
+                        </a>
+                    {% else %}
+                        <p class="text-muted small mb-3">No skills added yet. Add your skills to get better recommendations!</p>
+                        <a href="{{ url_for('user_profile') }}" class="btn btn-sm btn-primary w-100">
+                            <i class="bi bi-plus-circle me-1"></i>Add Skills
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .checklist-item {
+        display: flex;
+        align-items: center;
+        font-size: 0.95rem;
+    }
+    
+    .checklist-item.completed {
+        color: #212529;
+    }
+    
+    .checklist-item.incomplete {
+        color: #6c757d;
+    }
+</style>
+{% endblock %}

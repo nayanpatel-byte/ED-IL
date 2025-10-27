@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Internship Portal - Welcome</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --success-color: #198754;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .landing-container {
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .landing-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        .landing-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        
+        .landing-header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+        
+        .portal-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 3rem 2rem;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+        
+        .portal-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .student-portal .portal-icon {
+            background: linear-gradient(135deg, #0d6efd, #0056b3);
+        }
+        
+        .admin-portal .portal-icon {
+            background: linear-gradient(135deg, #198754, #146c43);
+        }
+        
+        .portal-card:hover .portal-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .portal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .student-portal .portal-title {
+            color: var(--primary-color);
+        }
+        
+        .admin-portal .portal-title {
+            color: var(--success-color);
+        }
+        
+        .portal-description {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+        
+        .portal-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .portal-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .portal-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .portal-features i {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .student-portal .portal-features i {
+            color: var(--primary-color);
+        }
+        
+        .admin-portal .portal-features i {
+            color: var(--success-color);
+        }
+        
+        .btn-portal {
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: none;
+            width: 100%;
+            margin-bottom: 0.75rem;
+        }
+        
+        .btn-student-login {
+            background: linear-gradient(135deg, #0d6efd, #0056b3);
+            color: white;
+        }
+        
+        .btn-student-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(13, 110, 253, 0.4);
+            color: white;
+        }
+        
+        .btn-student-register {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-student-register:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .btn-admin-login {
+            background: linear-gradient(135deg, #198754, #146c43);
+            color: white;
+        }
+        
+        .btn-admin-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(25, 135, 84, 0.4);
+            color: white;
+        }
+        
+        .btn-browse {
+            background: white;
+            color: var(--success-color);
+            border: 2px solid var(--success-color);
+        }
+        
+        .btn-browse:hover {
+            background: var(--success-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .footer-text {
+            text-align: center;
+            color: white;
+            margin-top: 3rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .landing-header h1 {
+                font-size: 2rem;
+            }
+            
+            .landing-header p {
+                font-size: 1rem;
+            }
+            
+            .portal-card {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <!-- Header -->
+        <div class="landing-header">
+            <i class="bi bi-briefcase-fill" style="font-size: 4rem; display: block; margin-bottom: 1rem;"></i>
+            <h1>Smart Internship Portal</h1>
+            <p>Connect Students with Career Opportunities</p>
+        </div>
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="row mb-4">
+                    <div class="col-12">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Portal Selection Cards -->
+        <div class="row g-4">
+            <!-- Student Portal -->
+            <div class="col-md-6">
+                <div class="portal-card student-portal">
+                    <div class="portal-icon">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                    
+                    <h2 class="portal-title">Student Portal</h2>
+                    
+                    <p class="portal-description">
+                        Find and apply for internships that match your skills and career goals
+                    </p>
+                    
+                    <ul class="portal-features">
+                        <li>
+                            <i class="bi bi-search"></i>
+                            <span>Browse thousands of internship opportunities</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-star"></i>
+                            <span>Get personalized recommendations</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-graph-up"></i>
+                            <span>Track your applications in real-time</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-bell"></i>
+                            <span>Receive instant notifications</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-auto">
+                        <a href="{{ url_for('student_login') }}" class="btn btn-portal btn-student-login">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Student Login
+                        </a>
+                        <a href="{{ url_for('student_register') }}" class="btn btn-portal btn-student-register">
+                            <i class="bi bi-person-plus me-2"></i>Register as Student
+                        </a>
+                        <div class="text-center mt-3">
+                            <a href="{{ url_for('internship_listings') }}" class="text-decoration-none">
+                                <small>Browse without login <i class="bi bi-arrow-right"></i></small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Admin Portal -->
+            <div class="col-md-6">
+                <div class="portal-card admin-portal">
+                    <div class="portal-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    
+                    <h2 class="portal-title">Admin Portal</h2>
+                    
+                    <p class="portal-description">
+                        Manage students, companies, and internship allocations efficiently
+                    </p>
+                    
+                    <ul class="portal-features">
+                        <li>
+                            <i class="bi bi-speedometer2"></i>
+                            <span>Comprehensive analytics dashboard</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-people"></i>
+                            <span>Manage student applications</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-building"></i>
+                            <span>Oversee company partnerships</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-clipboard-check"></i>
+                            <span>Handle internship allocations</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-auto">
+                        <a href="{{ url_for('admin.login') }}" class="btn btn-portal btn-admin-login">
+                            <i class="bi bi-shield-lock me-2"></i>Admin Login
+                        </a>
+                        <a href="{{ url_for('company_register') }}" class="btn btn-portal btn-browse">
+                            <i class="bi bi-briefcase-fill me-2"></i>Post Internship
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer-text">
+            <p class="mb-0">© 2025 Smart Internship Portal. All rights reserved.</p>
+            <small>Connecting talent with opportunity</small>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

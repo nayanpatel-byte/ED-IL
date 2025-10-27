@@ -1,0 +1,496 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "education": "B.Tech - CS",
+      "skills": [
+        "Python",
+        "Flask"
+      ],
+      "resume": null,
+      "notifications": [],
+      "notifications_unread": 0
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "education": "B.Sc - IT",
+      "skills": [
+        "Java",
+        "SQL"
+      ],
+      "resume": null,
+      "notifications": [],
+      "notifications_unread": 0
+    },
+    {
+      "id": 3,
+      "name": "Ameya",
+      "email": "ameya@example.in",
+      "education": "BTech",
+      "skills": [
+        "Python",
+        "Javascript"
+      ],
+      "resume": null,
+      "notifications": [],
+      "notifications_unread": 0,
+      "registered_at": "2025-10-24T06:06:36.605736"
+    },
+    {
+      "id": 4,
+      "name": "Bhargav Gannavarapu",
+      "email": "josone4403@etenx.com",
+      "education": "B.Tech",
+      "skills": [
+        "python.javascript",
+        "c"
+      ],
+      "resume": null,
+      "notifications": [],
+      "notifications_unread": 0,
+      "registered_at": "2025-10-27T01:40:25.438090"
+    },
+    {
+      "id": 5,
+      "name": "Bhargav Gannavarapu",
+      "email": "josone4403@etenx.com",
+      "education": "B.Tech",
+      "skills": [
+        "python",
+        "javascript",
+        "c"
+      ],
+      "resume": null,
+      "notifications": [],
+      "notifications_unread": 0,
+      "registered_at": "2025-10-27T02:02:40.167879"
+    },
+    {
+      "id": 6,
+      "name": "Bhargav Gannavarapu",
+      "email": "a@email.com",
+      "education": "life is a race",
+      "skills": [
+        "i run fast"
+      ],
+      "resume": null,
+      "notifications": [
+        {
+          "id": "n1761525348214",
+          "msg": "Your application for 'Machine Learning Intern' at AI Innovations has been submitted successfully.",
+          "time": "2025-10-27T06:05:48.214694",
+          "read": false
+        },
+        {
+          "id": "n1761525351669",
+          "msg": "Your application for 'Full Stack Developer Intern' at WebCraft Studios has been submitted successfully.",
+          "time": "2025-10-27T06:05:51.669286",
+          "read": false
+        }
+      ],
+      "notifications_unread": 2,
+      "registered_at": "2025-10-27T06:05:31.242761"
+    }
+  ],
+  "internships": [
+    {
+      "company": "Walscorp",
+      "title": "CEO",
+      "skills": [
+        "Javascript"
+      ],
+      "openings": 1,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-24T06:08:47.453408"
+    },
+    {
+      "company": "Acme Corp",
+      "title": "Backend Intern",
+      "skills": [
+        "Python",
+        "Flask"
+      ],
+      "openings": 1,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-23T07:39:11.417633"
+    },
+    {
+      "company": "DataWorks",
+      "title": "Data Analyst Intern",
+      "skills": [
+        "SQL",
+        "Pandas"
+      ],
+      "openings": 2,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-23T07:39:11.417612"
+    },
+    {
+      "company": "AI Innovations",
+      "title": "Machine Learning Intern",
+      "skills": [
+        "Python",
+        "Machine Learning",
+        "TensorFlow",
+        "AI"
+      ],
+      "location": "Remote",
+      "duration": "6 months",
+      "openings": 3,
+      "apps": [
+        {
+          "id": 6,
+          "name": "Bhargav Gannavarapu",
+          "email": "a@email.com",
+          "education": "life is a race",
+          "skills": [
+            "i run fast"
+          ],
+          "resume": null,
+          "notifications": [
+            {
+              "id": "n1761525348214",
+              "msg": "Your application for 'Machine Learning Intern' at AI Innovations has been submitted successfully.",
+              "time": "2025-10-27T06:05:48.214694",
+              "read": false
+            },
+            {
+              "id": "n1761525351669",
+              "msg": "Your application for 'Full Stack Developer Intern' at WebCraft Studios has been submitted successfully.",
+              "time": "2025-10-27T06:05:51.669286",
+              "read": false
+            }
+          ],
+          "notifications_unread": 2,
+          "registered_at": "2025-10-27T06:05:31.242761"
+        }
+      ],
+      "app_ids": [
+        6
+      ],
+      "selected_ids": [],
+      "created_at": "2025-10-27T11:00:00.000000"
+    },
+    {
+      "company": "WebCraft Studios",
+      "title": "Full Stack Developer Intern",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "MongoDB"
+      ],
+      "location": "Hybrid",
+      "duration": "3 months",
+      "openings": 2,
+      "apps": [
+        {
+          "id": 6,
+          "name": "Bhargav Gannavarapu",
+          "email": "a@email.com",
+          "education": "life is a race",
+          "skills": [
+            "i run fast"
+          ],
+          "resume": null,
+          "notifications": [
+            {
+              "id": "n1761525348214",
+              "msg": "Your application for 'Machine Learning Intern' at AI Innovations has been submitted successfully.",
+              "time": "2025-10-27T06:05:48.214694",
+              "read": false
+            },
+            {
+              "id": "n1761525351669",
+              "msg": "Your application for 'Full Stack Developer Intern' at WebCraft Studios has been submitted successfully.",
+              "time": "2025-10-27T06:05:51.669286",
+              "read": false
+            }
+          ],
+          "notifications_unread": 2,
+          "registered_at": "2025-10-27T06:05:31.242761"
+        }
+      ],
+      "app_ids": [
+        6
+      ],
+      "selected_ids": [],
+      "created_at": "2025-10-27T10:30:00.000000"
+    },
+    {
+      "company": "CloudFirst Solutions",
+      "title": "DevOps Intern",
+      "skills": [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Linux"
+      ],
+      "location": "On-site",
+      "duration": "4 months",
+      "openings": 1,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T10:00:00.000000"
+    },
+    {
+      "company": "MobileMasters",
+      "title": "iOS Developer Intern",
+      "skills": [
+        "Swift",
+        "iOS",
+        "Xcode",
+        "Mobile UI"
+      ],
+      "location": "Remote",
+      "duration": "2 months",
+      "openings": 2,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T09:30:00.000000"
+    },
+    {
+      "company": "GameForge",
+      "title": "Unity Developer Intern",
+      "skills": [
+        "Unity",
+        "C#",
+        "Game Design",
+        "3D Modeling"
+      ],
+      "openings": 2,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T09:00:00.000000"
+    },
+    {
+      "company": "SecureNet",
+      "title": "Cybersecurity Intern",
+      "skills": [
+        "Python",
+        "Network Security",
+        "Ethical Hacking",
+        "Linux"
+      ],
+      "openings": 1,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T08:30:00.000000"
+    },
+    {
+      "company": "BlockChain Pro",
+      "title": "Blockchain Developer Intern",
+      "skills": [
+        "Python",
+        "Blockchain",
+        "Solidity",
+        "Web3"
+      ],
+      "openings": 1,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T08:00:00.000000"
+    },
+    {
+      "company": "IoT Solutions",
+      "title": "IoT Engineer Intern",
+      "skills": [
+        "Python",
+        "Arduino",
+        "Raspberry Pi",
+        "Embedded Systems"
+      ],
+      "openings": 2,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T07:30:00.000000"
+    },
+    {
+      "company": "VR Experience",
+      "title": "VR Developer Intern",
+      "skills": [
+        "Unity",
+        "C#",
+        "VR Development",
+        "3D Graphics"
+      ],
+      "openings": 1,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T07:00:00.000000"
+    },
+    {
+      "company": "EcoTech",
+      "title": "Environmental Data Intern",
+      "skills": [
+        "Python",
+        "Data Analysis",
+        "Environmental Science",
+        "GIS"
+      ],
+      "openings": 1,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T06:30:00.000000"
+    },
+    {
+      "company": "HealthTech AI",
+      "title": "Healthcare AI Intern",
+      "skills": [
+        "Python",
+        "Machine Learning",
+        "Medical Data",
+        "AI"
+      ],
+      "openings": 2,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T06:00:00.000000"
+    },
+    {
+      "company": "EduTech Platform",
+      "title": "EdTech Developer Intern",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "MongoDB"
+      ],
+      "openings": 3,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T05:30:00.000000"
+    },
+    {
+      "company": "AutoDrive",
+      "title": "Autonomous Vehicle Intern",
+      "skills": [
+        "Python",
+        "Computer Vision",
+        "Machine Learning",
+        "Robotics"
+      ],
+      "openings": 1,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T05:00:00.000000"
+    },
+    {
+      "company": "FinTech Solutions",
+      "title": "Fintech Developer Intern",
+      "skills": [
+        "Python",
+        "Blockchain",
+        "SQL",
+        "Financial Analysis"
+      ],
+      "openings": 2,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T04:30:00.000000"
+    },
+    {
+      "company": "Marketing Pro",
+      "title": "Digital Marketing Intern",
+      "skills": [
+        "SEO",
+        "Social Media",
+        "Analytics",
+        "Content Creation"
+      ],
+      "openings": 3,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T04:00:00.000000"
+    },
+    {
+      "company": "Design Studio",
+      "title": "UI/UX Design Intern",
+      "skills": [
+        "Figma",
+        "Adobe XD",
+        "Prototyping",
+        "User Research"
+      ],
+      "openings": 2,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T03:30:00.000000"
+    },
+    {
+      "company": "DataViz Inc",
+      "title": "Data Visualization Intern",
+      "skills": [
+        "Python",
+        "Tableau",
+        "Power BI",
+        "Data Analysis"
+      ],
+      "openings": 2,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T03:00:00.000000"
+    },
+    {
+      "company": "Quantum Labs",
+      "title": "Quantum Computing Intern",
+      "skills": [
+        "Python",
+        "Quantum Computing",
+        "Linear Algebra",
+        "Physics"
+      ],
+      "openings": 1,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T02:30:00.000000"
+    },
+    {
+      "company": "SpaceTech",
+      "title": "Aerospace Intern",
+      "skills": [
+        "Python",
+        "MATLAB",
+        "Aerospace Engineering",
+        "Simulation"
+      ],
+      "openings": 1,
+      "apps": [],
+      "app_ids": [],
+      "selected_ids": [],
+      "created_at": "2025-10-27T02:00:00.000000"
+    }
+  ],
+  "blogs": [
+    {
+      "title": "Welcome",
+      "body": "This is the platform blog. Share internship tips and news here.",
+      "author": "Admin",
+      "time": "2025-10-23T07:39:11.417639"
+    }
+  ]
+}

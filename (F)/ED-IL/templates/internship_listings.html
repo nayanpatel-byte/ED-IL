@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+
+{% block title %}Internship Listings - Smart Internship Portal{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div class="mb-3 mb-md-0">
+                    <h1 class="h3 mb-2 fw-bold">Internship Listings</h1>
+                    <p class="text-muted mb-0">Discover exciting internship opportunities from top companies</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-plus-circle me-2"></i>Post New Internship
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter and Search Section -->
+    <div class="filter-section">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text bg-white">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control" id="searchInternships" 
+                           placeholder="Search internships by title, company, or skills..." 
+                           value="{{ search_query }}"
+                           onkeyup="filterInternships()">
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="row g-2">
+                    <div class="col-4">
+                        <select class="form-select" id="locationFilter" onchange="filterInternships()">
+                            <option value="">All Locations</option>
+                            <option value="remote" {% if location_filter == 'remote' %}selected{% endif %}>Remote</option>
+                            <option value="onsite" {% if location_filter == 'onsite' %}selected{% endif %}>On-site</option>
+                            <option value="hybrid" {% if location_filter == 'hybrid' %}selected{% endif %}>Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-select" id="durationFilter" onchange="filterInternships()">
+                            <option value="">All Durations</option>
+                            <option value="1-3" {% if duration_filter == '1-3' %}selected{% endif %}>1-3 months</option>
+                            <option value="3-6" {% if duration_filter == '3-6' %}selected{% endif %}>3-6 months</option>
+                            <option value="6+" {% if duration_filter == '6+' %}selected{% endif %}>6+ months</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-select" id="skillFilter" onchange="filterInternships()">
+                            <option value="">All Skills</option>
+                            <option value="python" {% if skill_filter == 'python' %}selected{% endif %}>Python</option>
+                            <option value="javascript" {% if skill_filter == 'javascript' %}selected{% endif %}>JavaScript</option>
+                            <option value="java" {% if skill_filter == 'java' %}selected{% endif %}>Java</option>
+                            <option value="sql" {% if skill_filter == 'sql' %}selected{% endif %}>SQL</option>
+                            <option value="ai" {% if skill_filter == 'ai' %}selected{% endif %}>AI</option>
+                            <option value="react" {% if skill_filter == 'react' %}selected{% endif %}>React</option>
+                            <option value="aws" {% if skill_filter == 'aws' %}selected{% endif %}>AWS</option>
+                            <option value="unity" {% if skill_filter == 'unity' %}selected{% endif %}>Unity</option>
+                            <option value="machine learning" {% if skill_filter == 'machine learning' %}selected{% endif %}>Machine Learning</option>
+                            <option value="blockchain" {% if skill_filter == 'blockchain' %}selected{% endif %}>Blockchain</option>
+                            <option value="cybersecurity" {% if skill_filter == 'cybersecurity' %}selected{% endif %}>Cybersecurity</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Filters Toggle -->
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFilters">
+                    <i class="bi bi-funnel me-2"></i>Advanced Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Collapsible Advanced Filters -->
+        <div class="collapse mt-3" id="advancedFilters">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="filter-title">Skills Required</div>
+                    <div class="form-check">
+                        <input class="form-check-input filter-checkbox" type="checkbox" value="python" id="skill1" data-filter-type="skills">
+                        <label class="form-check-label" for="skill1">Python</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input filter-checkbox" type="checkbox" value="javascript" id="skill2" data-filter-type="skills">
+                        <label class="form-check-label" for="skill2">JavaScript</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input filter-checkbox" type="checkbox" value="react" id="skill3" data-filter-type="skills">
+                        <label class="form-check-label" for="skill3">React</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input filter-checkbox" type="checkbox" value="java" id="skill4" data-filter-type="skills">
+                        <label class="form-check-label" for="skill4">Java</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="filter-title">Compensation</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="comp1">
+                        <label class="form-check-label" for="comp1">Paid</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="comp2">
+                        <label class="form-check-label" for="comp2">Unpaid</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="comp3">
+                        <label class="form-check-label" for="comp3">Stipend Available</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="filter-title">Start Date</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="date1">
+                        <label class="form-check-label" for="date1">Immediate</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="date2">
+                        <label class="form-check-label" for="date2">Within 1 Month</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="date3">
+                        <label class="form-check-label" for="date3">Flexible</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="filter-title">Company Size</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="size1">
+                        <label class="form-check-label" for="size1">Startup (1-50)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="size2">
+                        <label class="form-check-label" for="size2">Medium (51-500)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="size3">
+                        <label class="form-check-label" for="size3">Enterprise (500+)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Count and Sort -->
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <p class="text-muted mb-0">Showing <strong>{{ internships|length }}</strong> internship opportunities</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="sortOptions" id="sortRecent" value="recent" 
+                       {% if sort_by == 'recent' %}checked{% endif %} onchange="filterInternships()">
+                <label class="btn btn-outline-secondary btn-sm" for="sortRecent">Most Recent</label>
+                
+                <input type="radio" class="btn-check" name="sortOptions" id="sortCompany" value="company"
+                       {% if sort_by == 'company' %}checked{% endif %} onchange="filterInternships()">
+                <label class="btn btn-outline-secondary btn-sm" for="sortCompany">Company</label>
+                
+                <input type="radio" class="btn-check" name="sortOptions" id="sortTitle" value="title"
+                       {% if sort_by == 'title' %}checked{% endif %} onchange="filterInternships()">
+                <label class="btn btn-outline-secondary btn-sm" for="sortTitle">Title</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Internship Cards Grid -->
+    <div class="row g-4" id="internshipGrid">
+        {% for internship in internships %}
+        <div class="col-md-6 internship-card-wrapper">
+            <div class="card internship-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div class="company-logo">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <span class="badge bg-success">Open</span>
+                    </div>
+                    <h5 class="internship-title">{{ internship.title }}</h5>
+                    <p class="internship-company"><i class="bi bi-building me-2"></i>{{ internship.company }}</p>
+                    
+                    <div class="internship-meta">
+                        <div class="meta-item">
+                            <i class="bi bi-people"></i>
+                            <span>{{ internship.openings }} opening{{ 's' if internship.openings > 1 else '' }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-person-check"></i>
+                            <span>{{ internship.app_ids|length }} applicant{{ 's' if internship.app_ids|length != 1 else '' }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-calendar"></i>
+                            <span>{{ internship.created_at[:10] if internship.created_at else 'N/A' }}</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-muted small mb-3">
+                        Apply for this exciting internship opportunity at {{ internship.company }}.
+                    </p>
+                    
+                    <div class="mb-3">
+                        {% for skill in internship.skills %}
+                        <span class="skill-badge">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            <i class="bi bi-calendar me-1"></i>Posted {{ internship.created_at[:10] if internship.created_at else 'Recently' }}
+                        </small>
+                        {% if current_user %}
+                        <form method="post" action="/apply_ajax" class="d-inline">
+                            <input type="hidden" name="iid" value="{{ internship.index }}">
+                            <button type="button" class="btn btn-primary btn-sm apply-btn" 
+                                    data-iid="{{ internship.index }}"
+                                    data-title="{{ internship.title }}"
+                                    data-company="{{ internship.company }}">
+                            <i class="bi bi-arrow-right me-1"></i>Apply Now
+                        </button>
+                        </form>
+                        {% else %}
+                        <a href="/student/register" class="btn btn-primary btn-sm">
+                            <i class="bi bi-arrow-right me-1"></i>Login to Apply
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <i class="bi bi-info-circle me-2"></i>
+                No internships found matching your criteria.
+                        </div>
+                    </div>
+        {% endfor %}
+            </div>
+        </div>
+
+<script>
+function filterInternships() {
+    const searchQuery = document.getElementById('searchInternships').value.toLowerCase();
+    const skillFilter = document.getElementById('skillFilter').value.toLowerCase();
+    const locationFilter = document.getElementById('locationFilter').value.toLowerCase();
+    const durationFilter = document.getElementById('durationFilter').value.toLowerCase();
+    const sortBy = document.querySelector('input[name="sortOptions"]:checked').value;
+    
+    // Build URL with parameters
+    const params = new URLSearchParams();
+    if (searchQuery) params.append('search', searchQuery);
+    if (skillFilter) params.append('skill', skillFilter);
+    if (locationFilter) params.append('location', locationFilter);
+    if (durationFilter) params.append('duration', durationFilter);
+    if (sortBy) params.append('sort', sortBy);
+    
+    // Redirect to filtered results
+    window.location.href = '/internships?' + params.toString();
+}
+
+// Handle apply button clicks
+document.addEventListener('DOMContentLoaded', function() {
+    const applyButtons = document.querySelectorAll('.apply-btn');
+    applyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const iid = this.getAttribute('data-iid');
+            const title = this.getAttribute('data-title');
+            const company = this.getAttribute('data-company');
+            
+            // Send AJAX request to apply
+            fetch('/apply_ajax', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({iid: parseInt(iid)})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    this.innerHTML = '<i class="bi bi-check me-1"></i>Applied';
+                    this.classList.remove('btn-primary');
+                    this.classList.add('btn-success');
+                    this.disabled = true;
+                    alert('Successfully applied to ' + title + ' at ' + company + '!');
+                } else if (data.status === 'already') {
+                    alert('You have already applied to this internship.');
+                } else if (data.status === 'not_logged_in') {
+                    alert('Please login to apply for internships.');
+                    window.location.href = '/student/register';
+                } else {
+                    alert('Error: ' + (data.message || 'Failed to apply'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while applying. Please try again.');
+            });
+        });
+    });
+});
+</script>
+{% endblock %}
+                    <div class="internship-meta">
+                    <div class="internship-meta">
+                    <div class="internship-meta">

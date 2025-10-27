@@ -1,0 +1,411 @@
+{% extends "base.html" %}
+
+{% block title %}Notifications - Smart Internship Portal{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div class="mb-3 mb-md-0">
+                    <h1 class="h3 mb-2 fw-bold">Notifications</h1>
+                    <p class="text-muted mb-0">Stay updated with all your application activities</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-check-all me-2"></i>Mark All Read
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-gear me-2"></i>Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#all" data-bs-toggle="pill">
+                        All <span class="badge bg-primary rounded-pill ms-2">12</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#unread" data-bs-toggle="pill">
+                        Unread <span class="badge bg-danger rounded-pill ms-2">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#applications" data-bs-toggle="pill">Applications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#system" data-bs-toggle="pill">System</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Notifications List -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="all">
+                    <!-- Notification Card 1 - Unread -->
+                    <div class="card notification-card unread mb-3">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="notification-icon-wrapper bg-success">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                                <div class="notification-details flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="notification-title mb-0">Application Approved</h6>
+                                        <small class="text-muted">2 minutes ago</small>
+                                    </div>
+                                    <p class="notification-message mb-2">
+                                        Congratulations! Your application for <strong>Software Developer Intern</strong> at <strong>TechCorp Inc.</strong> has been approved. The company will contact you soon.
+                                    </p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-primary me-2">
+                                            <i class="bi bi-eye me-1"></i>View Details
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="bi bi-check me-1"></i>Mark as Read
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Card 2 - Unread -->
+                    <div class="card notification-card unread mb-3">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="notification-icon-wrapper bg-info">
+                                    <i class="bi bi-envelope-fill"></i>
+                                </div>
+                                <div class="notification-details flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="notification-title mb-0">New Message Received</h6>
+                                        <small class="text-muted">1 hour ago</small>
+                                    </div>
+                                    <p class="notification-message mb-2">
+                                        You have received a new message from <strong>TechCorp Inc.</strong> regarding your internship application.
+                                    </p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-primary me-2">
+                                            <i class="bi bi-reply me-1"></i>Reply
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="bi bi-check me-1"></i>Mark as Read
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Card 3 - Unread -->
+                    <div class="card notification-card unread mb-3">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="notification-icon-wrapper bg-warning">
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                </div>
+                                <div class="notification-details flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="notification-title mb-0">Profile Incomplete</h6>
+                                        <small class="text-muted">3 hours ago</small>
+                                    </div>
+                                    <p class="notification-message mb-2">
+                                        Your profile is missing important information. Complete your profile to increase your chances of getting hired.
+                                    </p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-warning me-2">
+                                            <i class="bi bi-pencil me-1"></i>Complete Profile
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="bi bi-check me-1"></i>Mark as Read
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Card 4 - Read -->
+                    <div class="card notification-card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="notification-icon-wrapper bg-primary">
+                                    <i class="bi bi-briefcase-fill"></i>
+                                </div>
+                                <div class="notification-details flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="notification-title mb-0">New Internship Match</h6>
+                                        <small class="text-muted">1 day ago</small>
+                                    </div>
+                                    <p class="notification-message mb-2">
+                                        A new internship opportunity matching your profile has been posted: <strong>Data Science Intern</strong> at <strong>DataSoft Solutions</strong>.
+                                    </p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-primary me-2">
+                                            <i class="bi bi-arrow-right me-1"></i>View Opportunity
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Card 5 - Read -->
+                    <div class="card notification-card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="notification-icon-wrapper bg-danger">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                </div>
+                                <div class="notification-details flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="notification-title mb-0">Application Not Selected</h6>
+                                        <small class="text-muted">2 days ago</small>
+                                    </div>
+                                    <p class="notification-message mb-2">
+                                        Unfortunately, your application for <strong>Cloud Engineer Intern</strong> at <strong>CloudTech Systems</strong> was not selected. Keep applying!
+                                    </p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-primary me-2">
+                                            <i class="bi bi-search me-1"></i>Find Similar Jobs
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Card 6 - Read -->
+                    <div class="card notification-card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="notification-icon-wrapper bg-info">
+                                    <i class="bi bi-calendar-check-fill"></i>
+                                </div>
+                                <div class="notification-details flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="notification-title mb-0">Interview Scheduled</h6>
+                                        <small class="text-muted">3 days ago</small>
+                                    </div>
+                                    <p class="notification-message mb-2">
+                                        Your interview with <strong>WebDesign Pro</strong> has been scheduled for October 28, 2025 at 10:00 AM.
+                                    </p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-primary me-2">
+                                            <i class="bi bi-calendar-plus me-1"></i>Add to Calendar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Card 7 - Read -->
+                    <div class="card notification-card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="notification-icon-wrapper bg-secondary">
+                                    <i class="bi bi-bell-fill"></i>
+                                </div>
+                                <div class="notification-details flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="notification-title mb-0">System Update</h6>
+                                        <small class="text-muted">1 week ago</small>
+                                    </div>
+                                    <p class="notification-message mb-2">
+                                        The portal has been updated with new features including resume builder and skill assessment tools.
+                                    </p>
+                                    <div class="notification-actions">
+                                        <button class="btn btn-sm btn-primary me-2">
+                                            <i class="bi bi-info-circle me-1"></i>Learn More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-clockwise me-2"></i>Load More Notifications
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar - Notification Settings -->
+        <div class="col-lg-4">
+            <div class="card sticky-top" style="top: 80px;">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0 fw-bold">Notification Preferences</h6>
+                </div>
+                <div class="card-body">
+                    <div class="preference-item mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label mb-0">Email Notifications</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="emailNotif" checked>
+                            </div>
+                        </div>
+                        <small class="text-muted">Receive notifications via email</small>
+                    </div>
+
+                    <div class="preference-item mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label mb-0">Application Updates</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="appNotif" checked>
+                            </div>
+                        </div>
+                        <small class="text-muted">Get notified about application status</small>
+                    </div>
+
+                    <div class="preference-item mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label mb-0">New Opportunities</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="oppNotif" checked>
+                            </div>
+                        </div>
+                        <small class="text-muted">Alerts for matching internships</small>
+                    </div>
+
+                    <div class="preference-item mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label mb-0">Messages</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="msgNotif" checked>
+                            </div>
+                        </div>
+                        <small class="text-muted">Notifications for new messages</small>
+                    </div>
+
+                    <div class="preference-item mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label mb-0">System Updates</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="sysNotif">
+                            </div>
+                        </div>
+                        <small class="text-muted">Platform updates and announcements</small>
+                    </div>
+
+                    <hr>
+
+                    <div class="mt-3">
+                        <h6 class="fw-bold mb-3">Notification Frequency</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="frequency" id="instant" checked>
+                            <label class="form-check-label" for="instant">
+                                Instant
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="frequency" id="daily">
+                            <label class="form-check-label" for="daily">
+                                Daily Digest
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="frequency" id="weekly">
+                            <label class="form-check-label" for="weekly">
+                                Weekly Summary
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-100 mt-3">
+                        <i class="bi bi-save me-2"></i>Save Preferences
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .notification-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+    }
+
+    .notification-card:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .notification-card.unread {
+        border-left: 4px solid var(--primary-color);
+        background-color: #f8f9ff;
+    }
+
+    .notification-icon-wrapper {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        flex-shrink: 0;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+    }
+
+    .notification-title {
+        font-weight: 600;
+        color: #212529;
+    }
+
+    .notification-message {
+        color: #6c757d;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .notification-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .nav-pills .nav-link {
+        color: #6c757d;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: var(--primary-color);
+    }
+
+    .preference-item {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .preference-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .form-switch .form-check-input {
+        cursor: pointer;
+    }
+</style>
+{% endblock %}

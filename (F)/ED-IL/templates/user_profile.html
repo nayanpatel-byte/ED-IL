@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile - Smart Internship Portal{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Profile Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0">
+                <div class="profile-header">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                        <div class="d-flex align-items-center">
+                            <div class="profile-avatar">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            <div class="ms-4">
+                                <h2 class="mb-1">John Doe</h2>
+                                <p class="mb-2 opacity-75">Computer Science Student</p>
+                                <div class="d-flex gap-3">
+                                    <span><i class="bi bi-envelope me-2"></i>john.doe@university.edu</span>
+                                    <span><i class="bi bi-telephone me-2"></i>+1 (555) 123-4567</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 mt-md-0">
+                            <button class="btn btn-light">
+                                <i class="bi bi-upload me-2"></i>Upload Photo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Left Column - Profile Form -->
+        <div class="col-lg-8">
+            <!-- Personal Information -->
+            <div class="card mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Personal Information</h5>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="firstName" value="John" required>
+                                <div class="invalid-feedback">Please enter your first name.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="lastName" value="Doe" required>
+                                <div class="invalid-feedback">Please enter your last name.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" value="john.doe@university.edu" required>
+                                <div class="invalid-feedback">Please enter a valid email.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" value="+1 (555) 123-4567">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="dateOfBirth" value="2000-05-15">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select class="form-select" id="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="male" selected>Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not">Prefer not to say</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" placeholder="123 Main St">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" value="San Francisco">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="state" class="form-label">State</label>
+                                <input type="text" class="form-control" id="state" value="California">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="zip" class="form-label">ZIP</label>
+                                <input type="text" class="form-control" id="zip" value="94102">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Education Information -->
+            <div class="card mb-4">
+                <div class="card-header bg-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">Education</h5>
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-plus-circle me-1"></i>Add Education
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="education-item mb-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="fw-bold mb-1">Bachelor of Science in Computer Science</h6>
+                                <p class="text-muted mb-1">University of California, Berkeley</p>
+                                <p class="text-muted small mb-2">2021 - Present | GPA: 3.8/4.0</p>
+                                <p class="small mb-0">Relevant Coursework: Data Structures, Algorithms, Web Development, Machine Learning</p>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-link text-secondary p-0" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil me-2"></i>Edit</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="card mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Skills</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="skillInput" class="form-label">Add Skills</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="skillInput" placeholder="e.g., Python, JavaScript, React">
+                            <button class="btn btn-primary" type="button">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                        <small class="text-muted">Press Enter or click + to add a skill</small>
+                    </div>
+                    
+                    <div class="skills-container">
+                        <span class="badge bg-primary fs-6 me-2 mb-2 p-2">
+                            Python
+                            <i class="bi bi-x-circle ms-1 cursor-pointer"></i>
+                        </span>
+                        <span class="badge bg-primary fs-6 me-2 mb-2 p-2">
+                            JavaScript
+                            <i class="bi bi-x-circle ms-1 cursor-pointer"></i>
+                        </span>
+                        <span class="badge bg-primary fs-6 me-2 mb-2 p-2">
+                            React
+                            <i class="bi bi-x-circle ms-1 cursor-pointer"></i>
+                        </span>
+                        <span class="badge bg-primary fs-6 me-2 mb-2 p-2">
+                            Node.js
+                            <i class="bi bi-x-circle ms-1 cursor-pointer"></i>
+                        </span>
+                        <span class="badge bg-primary fs-6 me-2 mb-2 p-2">
+                            SQL
+                            <i class="bi bi-x-circle ms-1
